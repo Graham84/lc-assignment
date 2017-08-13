@@ -1,5 +1,8 @@
 package ie.cit.caf.lc_assignment;
 
+
+import java.util.List;
+
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 
@@ -13,13 +16,39 @@ public class ChObject {
 	private String creditline;
 	private String description;
 	private String gallery_text;
+	private List <Images> images;
+   	private List <Participants> participants;
 	
 	public String toString() {
-		String chObjectAsString = "\n-----Cultural Heritage Object-----" + "\nID: " + id + "\nTitle: " + title + "\nDate: " + date +
+		String chObject = "\n-----Cultural Heritage Object-----" + "\nID: " + id + "\nTitle: " + title + "\nDate: " + date +
 				"\nMedium: " + medium + "\nCreditline: " + creditline + "\nDescription: " + description +
 				"\nGallery Text: " + gallery_text;
-		return chObjectAsString;
+		for (Participants p : getParticipants()) {
+			chObject += "\n--- Participants ---" + "\nPerson ID: " + p.getPerson_id() + "\nPerson Name: " + p.getPerson_name() + 
+					"\nPerson Date: " + p.getPerson_date() +"\nPerson URL: " + p.getPerson_url() +
+					"\nRole ID: " + p.getRole_id() + "\nRole Name: : " + p.getRole_name() +"\nRole Display Name: " + p.getRole_display_name() + 
+					"\nRole URL: "+ p.getRole_url();
+		}
+		for (Images i : getImages()) {
+			chObject += "\n--- Images ---" + "\nImage: " + i.getB() + "\nImage Width: " + i.getB().getWidth() + "\nImage Height: " + i.getB().getHeight() +
+					"\nImage ID: " + i.getB().getImage_id() + "\nImage Primary: " + i.getB().getIs_primary() +  "\nImage URL: " + i.getB().getUrl()
+		
+			+ "\n" + "\nImage: " + i.getD() + "\nImage Width: " + i.getD().getWidth() + "\nImage Height: " + i.getD().getHeight() +
+			"\nImage ID: " + i.getD().getImage_id() + "\nImage Primary: " + i.getD().getIs_primary() +  "\nImage URL: " + i.getD().getUrl()
+		
+			+ "\n" + "\nImage: " + i.getN() + "\nImage Width: " + i.getN().getWidth() + "\nImage Height: " + i.getN().getHeight() +
+			"\nImage ID: " + i.getN().getImage_id() + "\nImage Primary: " + i.getN().getIs_primary() +  "\nImage URL: " + i.getN().getUrl()
+			
+			+ "\n" + "\nImage: " + i.getSq() + "\nImage Width: " + i.getSq().getWidth() + "\nImage Height: " + i.getSq().getHeight() +
+			"\nImage ID: " + i.getSq().getImage_id() + "\nImage Primary: " + i.getSq().getIs_primary() +  "\nImage URL: " + i.getSq().getUrl()
+			
+			+ "\n" + "\nImage: " + i.getZ() + "\nImage Width: " + i.getZ().getWidth() + "\nImage Height: " + i.getZ().getHeight() +
+			"\nImage ID: " + i.getZ().getImage_id() + "\nImage Primary: " + i.getZ().getIs_primary() +  "\nImage URL: " + i.getZ().getUrl();
+		}
+		return chObject;
+		
 	}
+
 
 	public int getId() {
 		return id;
@@ -76,6 +105,24 @@ public class ChObject {
 	public void setGallery_text(String gallery_text) {
 		this.gallery_text = gallery_text;
 	}
+
+	public List<Images> getImages() {
+		return images;
+	}
+
+	public void setImages(List<Images> images) {
+		this.images = images;
+	}
+
+	public List<Participants> getParticipants() {
+		return participants;
+	}
+
+	public void setParticipants(List<Participants> participants) {
+		this.participants = participants;
+	}
+
+
 	
 	
 
